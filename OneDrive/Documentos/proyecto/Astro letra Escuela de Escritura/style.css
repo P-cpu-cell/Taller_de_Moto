@@ -1,0 +1,817 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F5F5F5;
+   
+
+}
+
+header {
+    position: relative;
+    background-image: url(imagenes/hero.svg);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover; /* Podés dejarlo en cover o el % que elegiste antes */
+    min-height: 70vh;
+    
+    display: flex;
+    flex-direction: column; /* Asegura que si hay varios elementos se apilen bien */
+    align-items: center;
+    
+    /* 👇 ACÁ ESTÁ EL TRUCO PARA BAJARLO */
+    justify-content: flex-start; /* Cambiamos 'center' por 'flex-start' para empujarlo desde arriba */
+    padding-top: 80px;          /* Creamos el espacio con el menú. ¡Ajustá este número a gusto! */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.menu {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.menu .logo{
+    font-weight: 700;
+    font-size: 25px; /* <--- Corregido de 'font: size' a 'font-size' */
+    color: #efffef;
+}
+.logo img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+.menu-conteiner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* Busca esta sección y agrégale el display flex */
+.menu .navbar ul {
+    display: flex;
+    align-items: center;
+}
+.menu .navbar ul li a{
+   font-size: 18px;
+   padding: 10px 20px;
+   color: #efffef;
+   display: block;
+}
+
+.menu .navbar ul li a:hover{
+    color: #0Eaef3;  
+}
+
+#menu {
+    display: none;
+}
+
+.menu-icono{
+    width: 100px;
+    height: auto;
+    display: block;
+}
+    
+
+
+.menu label {
+    cursor: pointer;
+    display: none;
+}
+/* ==========================================================================
+   DISEÑO PARA CELULARES (Pantallas de 768px o menos)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Mostramos el label (el botón de menú) */
+    .menu label {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 101; /* Se asegura de quedar por encima de todo */
+    }
+
+    /* Dibujamos las 3 rayitas clásicas del menú hamburguesa */
+    .btn-linea {
+        width: 30px;
+        height: 3px;
+        background-color: #efffef; /* El blanco verdoso que estás usando */
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    /* 2. Ocultamos la barra de navegación horizontal y la preparamos como menú vertical */
+    .menu .navbar {
+        position: absolute;
+        top: 100%; /* Aparece justo debajo de la barra principal */
+        left: 0;
+        width: 100%;
+        background-color: #4c529c; /* Tu color violeta */
+        max-height: 0;             /* Lo escondemos inicialmente colapsando su altura */
+        overflow: hidden;          /* Oculta los enlaces mientras esté cerrado */
+        transition: max-height 0.4s ease-out; /* Animación suave al abrir */
+    }
+
+    /* Forzamos a que la lista de enlaces vaya hacia abajo en vertical */
+    .menu .navbar ul {
+        flex-direction: column;
+        padding: 20px 0;
+        width: 100%;
+    }
+
+    .menu .navbar ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 3. TRUCO MÁGICO: Cuando el checkbox (#menu) esté CHECKEADO, abrimos la navbar */
+    #menu:checked ~ .navbar {
+        max-height: 400px; /* Le damos una altura suficiente para que se despliegue */
+    }
+    
+    /* Opcional: Animación para que la primera y última raya del botón roten al abrir */
+    #menu:checked ~ label .btn-linea:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #menu:checked ~ label .btn-linea:nth-child(2) {
+        opacity: 0; /* Esconde la del medio */
+    }
+    #menu:checked ~ label .btn-linea:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+.header-content {
+    display: flex;
+}
+
+.content {
+    padding: 150px 150px 0px 0px;
+}
+
+.content h1 {
+    color: #ffffff;
+    font-size: 55px;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 55px;
+}
+
+.content p {
+    margin-top: 25px;
+    color: #AAB1FF;
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 40px;
+}
+
+.btn-1 {
+    display: inline-block;
+    background-color: rgba(170, 177, 255, 0.3);
+    border: 1px solid #AAB1FF;
+    margin: 35px 10px 0px 0px;
+    padding: 15px 25px;
+    color: #ffffff;
+    border-radius: 25px;
+}
+
+.btn-1:hover {
+    background-color: #AAB1FF;
+}
+
+
+.services {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(220px, 280px)); 
+    
+    /* Espacio entre las tarjetas: 50px arriba/abajo y 30px a los lados */
+    gap: 50px 30px; 
+    
+    /* Centra todo el bloque de 2x2 en la pantalla */
+    justify-content: center; 
+    
+    /* Espacio arriba para que el ícono flotante de la primera fila no se corte */
+    padding-top: 50px;
+    
+}
+.service {
+    padding: 35px 25px 40px 25px;      
+    background-color: #ffffff;
+    border-radius: 10px;      
+    box-shadow: 0px 10px 20px rgba(135, 141, 214, 0.15); 
+    position: relative;       
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* <-- Da margen arriba para compensar la imagen que sobresale */
+}
+
+.service img {
+    margin-top: 0px;        /* <-- Saca el círculo un poco hacia arriba de la caja */
+    margin-bottom: 15px;      /* <-- Separa el icono del título "Servicio 1" */
+    display: inline-block;
+}
+
+.service h3 {
+    margin-top: 15px;
+    margin-bottom: 10px; /* Despega el título del párrafo */
+    color: #111111;
+    font-size: 18px;
+}
+
+.service p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* --- Componente: Botón 2 --- */
+.btn-2 {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #704285;
+    color: #ffffff;
+}
+
+.btn-2:hover {
+    background-color: #865007;
+}
+
+/* --- Sección: Footer --- */
+
+
+.info-content {
+    display: flex;
+}
+
+.info-price {
+    padding: 35px;
+    text-align: center;
+    background-color: #F5F5F5;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+    margin: 0px 150px 0px 0px;
+    color: #0E0E0E;
+}
+
+.info-price h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 14px;
+    color: #0EAEF3 !important;
+    margin-bottom: 10px;
+}
+
+.info-price p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.info-txt {
+    margin-left: 35px;
+    color: #ffffff;
+}
+
+
+
+.enlaces {
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+.enlace {
+    display: flex;
+}
+
+.enlace li a {
+    display: block;
+    margin: 20px;
+    color: #ffffff;
+}
+
+.enlace li a:hover {
+    color: #0EAEF3;
+}
+
+
+.main {
+    flex: 1;
+}
+
+/* ==========================================
+   Responsive / Media Queries (Pantallas <= 991px)
+   ========================================== */
+@media (max-width: 991px) {
+    .menu {
+        padding: 20px;
+    }
+
+    .menu label {
+        display: initial;
+    }
+
+    .menu .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #5B5A0C;
+        display: none;
+    }
+
+    .menu .navbar ul li {
+        width: 100%;
+    }
+
+    #menu:checked ~ .navbar {
+        display: initial;
+    }
+  
+    .services {
+        grid-template-columns: 1fr; /* Cambiado a 1 columna para responsive */
+        padding: 50px 30px 0px 30px;
+    }
+
+    .service {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    header {
+        min-height: auto;
+        padding: 120px 0px 50px 0px; /* Ajustado para dar espacio al menú sin crear cajas gigantes */
+        background-position: center center;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 0px 30px;
+    } 
+
+    .header-content img {
+        width: 150px;
+        margin-top: 30px;
+    } 
+
+    .content {
+        padding: 0px;
+    }
+
+    .content h1 {
+        margin-top: 40px;
+        font-size: 40px;
+    }
+
+    .content p {
+        margin-top: 15px;
+        font-size: 24px;
+    }
+
+    .porfolios {
+        padding: 40px 30px;
+    }
+
+    .porfolios h2 {
+        margin-bottom: 15px;
+        font-size: 40px;
+    }
+
+    .porfolio {
+        flex-direction: column;
+    } 
+
+    .porfolio-1, .porfolio-2 {
+        margin: 20px 0px;
+        text-align: center;
+    }
+
+    .porfolio img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        display: none;
+    }
+} /* <--- Cierre correcto de la Media Query global */
+
+
+
+/* 1. Definimos los estilos globales en el contenedor principal */
+.menu.container {
+    font-family: 'Poppins', sans-serif;
+    color: #ff5733; 
+}
+
+/* 2. Forzamos a los enlaces (<a>) a heredar las propiedades del padre */
+.nav-menu li a {
+    color: inherit;          
+    font-family: inherit;    
+    text-decoration: none;   
+    transition: color 0.3s ease; 
+}
+
+/* 3. Efecto Hover para el menú */
+.nav-menu li a:hover {
+    color: #000000; 
+}
+footer {
+    background-color: #4c529c; /* Tu color base */
+    margin-top: 80px;          /* Más aire arriba para que respire la página */
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    background-color: rgba(255, 255, 255, 0.05); /* Un sutil reflejo brillante sobre tu fondo */
+    backdrop-filter: blur(5px);                  /* Efecto moderno de desenfoque */
+    border: 1px solid rgba(255, 255, 255, 0.1);  /* Bordes finos y elegantes */
+    border-radius: 50px;                         /* Bordes completamente redondeados (estilo píldora) */
+    padding: 12px 35px;
+    
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-item {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía limpia */
+    font-size: 14px;
+    color: #e0e0ff; /* Blanco sutilmente azulado, más suave a la vista */
+}
+
+.footer-item .label {
+    font-weight: 600;  /* "Autor:", "Fecha:" van en negrita */
+    color: #ffffff;    /* Color más brillante para resaltar */
+    margin-right: 4px;
+}
+
+/* Línea divisoria entre elementos (sólo para pantallas grandes) */
+.footer-divider {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* =======================================================
+   RESPONSIVE: Para que en celulares se vea perfecto 
+   ======================================================= */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Se apilan verticalmente */
+        border-radius: 16px;    /* Bordes menos redondeados para formato tarjeta */
+        padding: 20px;
+        gap: 12px;
+        width: 90%;             /* Se adapta al ancho de la pantalla móvil */
+        text-align: center;
+    }
+
+    .footer-divider {
+        display: none; /* Escondemos las líneas verticales en mobile */
+    }
+}
+.footer-content {
+    /* ... (mantené todo lo que ya pusiste antes) ... */
+    transition: all 0.3s ease; /* Hace que el cambio de color sea suave */
+}
+
+/* Efecto cuando el usuario pasa el mouse por encima */
+.footer-content:hover {
+    background-color: rgba(255, 255, 255, 0.09); /* Se ilumina un toque más */
+    border-color: rgba(255, 255, 255, 0.25);    /* El borde se nota un poco más */
+    transform: translateY(-2px);                 /* Sube sutilmente 2 píxeles */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);   /* Sombra suave abajo */
+}
+/* ========================================================
+   CORRECCIONES EN LA SECCIÓN NOSOTROS
+   ======================================================== */
+
+.nosotros {
+    max-width: 800px;       /* Un ancho máximo más estándar para pantallas web */
+    margin: 50px auto;       /* Centra el contenedor y da espacio arriba/abajo */
+    padding: 0 40px;         /* Padding a los lados (40px) para que NUNCA se pegue a los bordes de la pantalla */
+    /* SE ELIMINÓ: text-transform: uppercase; (Evita el conflicto de mayúsculas) */
+}
+
+.nosotros h1 {
+    font-size: 40px;
+    margin-top: 0;           /* Remueve espacio innecesario arriba si ya hay margen en el padre */
+    margin-bottom: 20px;     /* Despeja el espacio con respecto al párrafo de abajo */
+    color: #333333;          /* Un tono oscuro para contrastar con el fondo claro */
+}
+
+.nosotros p {
+    font-size: 18px;
+    line-height: 1.8;        /* Excelente interlineado para lectura */
+    text-align: justify;     /* Justifica el texto de manera elegante */
+    margin-bottom: 25px;     /* CORREGIDO: Sintaxis correcta para el margen inferior */
+    color: #555555;          /* Gris oscuro, mucho más amigable con la vista que el negro puro */
+}
+/* Esto alinea tus tres pilares de forma horizontal y responsiva */
+.pilares-container {
+    display: flex;
+    gap: 20px; /* Separación entre las columnas */
+    margin: 24px 0;
+}
+
+.pilar {
+    flex: 1; /* Hace que las 3 columnas midan lo mismo */
+    background-color: #f9f9f9; /* Un fondo gris clarito para destacarlas (opcional) */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.pilar h3 {
+    margin-top: 0;
+    font-weight: bold; /* Reemplaza el <strong> que tenías antes */
+}
+
+/* Para que en celulares se acomode uno abajo del otro automáticamente */
+@media (max-width: 768px) {
+    .pilares-container {
+        flex-direction: column;
+    }
+}
+/* ========================================================
+   CORRECCIONES EN LA SECCIÓN servicios
+   ======================================================== */
+
+.Serviciosd{
+    max-width: 800px;       /* Un ancho máximo más estándar para pantallas web */
+    margin: 50px auto;       /* Centra el contenedor y da espacio arriba/abajo */
+    padding: 0 40px;  
+}
+.Serviciosd h1{
+    font-size: 40px;
+    margin-top: 0;           /* Remueve espacio innecesario arriba si ya hay margen en el padre */
+    margin-bottom: 20px;     /* Despeja el espacio con respecto al párrafo de abajo */
+    color: #333333;  
+}
+.Serviciosd p{
+    font-size: 18px;
+    line-height: 1.8;        /* Excelente interlineado para lectura */
+    text-align: justify;     /* Justifica el texto de manera elegante */
+    margin-bottom: 25px;     /* CORREGIDO: Sintaxis correcta para el margen inferior */
+    color: #555555;  
+}
+.como-lo-haremos{
+    max-width: 800px;       /* Un ancho máximo más estándar para pantallas web */
+    margin: 50px auto;       /* Centra el contenedor y da espacio arriba/abajo */
+    padding: 0 40px;  
+}
+.como-lo-haremos h1{
+    font-size: 40px;
+    margin-top: 0;           /* Remueve espacio innecesario arriba si ya hay margen en el padre */
+    margin-bottom: 20px;     /* Despeja el espacio con respecto al párrafo de abajo */
+    color: #333333;  
+}
+.como-lo-haremos p{
+    font-size: 18px;
+    line-height: 1.8;        /* Excelente interlineado para lectura */
+    text-align: justify;     /* Justifica el texto de manera elegante */
+    margin-bottom: 25px;     /* CORREGIDO: Sintaxis correcta para el margen inferior */
+    color: #555555;  
+}
+/* lista desordenada */
+.lista-servicios {
+    list-style: none;   /* Quitamos los puntos negros por defecto */
+    padding-left: 20px; /* ¡Importante! Le da espacio a la izquierda para que se vean tus puntos */
+    margin: 0;
+}
+.lista-servicios li::before {
+    content: "•"; /* Agrega un punto antes de cada ítem */
+    color: #0EAEF3; /* Color del punto (puedes cambiarlo a tu gusto) */
+    margin-right: 10px; /* Espacio entre el punto y el texto */
+}
+.Serviciosd h2{
+    font-size: 20px;
+    margin-top: 0;           /* Remueve espacio innecesario arriba si ya hay margen en el padre */
+    margin-bottom: 20px;     /* Despeja el espacio con respecto al párrafo de abajo */
+    color: #333333;
+}
+.form{
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1277b1;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input,
+textarea,
+select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-origin: padding-box;
+}
+input::focus,
+textarea::focus,
+select::focus {
+    border-color: #0EAEF3;
+    outline: none;
+}
+button{
+    background-color: #6a1b9a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #4a148c;
+}
+/*tabla */
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top:20px;
+
+}
+th{
+    background-color: #4c529c;
+    color: white;
+    padding: 10px;
+}
+td{
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.tr:nth-last-child(even){
+    background-color: #F5F5F5;
+}
+tr:hover{
+    background-color: #e1bee7;
+}
+/* ========================================================
+   CORRECCIONES EN LA SECCIÓN beneficios
+   ======================================================== */
+.beneficios{
+     max-width: 800px;       /* Un ancho máximo más estándar para pantallas web */
+    margin: 50px auto;       /* Centra el contenedor y da espacio arriba/abajo */
+    padding: 0 40px; 
+}
+.beneficios h2{
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333333;
+}
+.beneficios p{
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 25px;
+    color: #555555;
+}
+.beneficios ol{
+    padding-left: 20px; /* Espacio para los números */
+    margin: 0;
+}
+/* lista ordenada */
+.lista-beneficios{
+    list-style: none;           /* Oculta los números por defecto del navegador */
+    counter-reset: mi-contador;     /* Inicializa el contador automático */
+    padding-left: 25px;         /* Espacio a la izquierda para que no se corten los números */
+    margin: 0;
+}
+.lista-beneficios li {
+    margin-bottom: 12px;        /* Espacio entre cada ítem */
+    position: relative;
+    font-family: 'Poppins', sans-serif;     /* Espacio entre los ítems */
+}
+.lista-beneficios li::before {
+    content: counter(mi-contador) ". "; /* Agrega el número seguido de un punto y espacio */
+    counter-increment: mi-contador;       /* Incrementa el contador para el siguiente ítem */
+    position: absolute;
+    left: -25px; /* Ajusta este valor para posicionar los números a la izquierda del texto */
+    color: #0EAEF3;
+    
+    /* Alineación para que todo quede derecho */
+    display: inline-block;
+    width: 20px; /* Ancho fijo para los números, ajusta según el tamaño de fuente */
+    text-align: right; /* Alinea los números a la derecha dentro de su espacio+ */
+}
+/* ========================================================
+   CORRECCIONES EN LA SECCIÓN Glosario
+   ======================================================== */
+/* 1. El contenedor principal que centra todo el bloque en la web */
+.glosario-seccion.container {
+    max-width: 800px;         /* Limita el ancho para que la lectura sea cómoda */
+    margin: 50px auto;        /* Centra el bloque horizontalmente y da aire arriba/abajo */
+    padding: 0 20px;          /* Colchón de seguridad para que no pegue en los bordes en celulares */
+    box-sizing: border-box;
+}
+
+/* 2. Estilo opcional para el párrafo de introducción (alineación justificada) */
+.glosario-seccion .introduccion {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;      /* Hace que el párrafo quede alineado de ambos lados */
+    margin-bottom: 30px;      /* Separa la introducción de la lista */
+    color: #333333;
+}
+
+.glosario-lista dt {
+    font-weight: bold;
+    color: #0EAEF3; /* El color de tu paleta */
+    margin-top: 15px;
+}
+
+.glosario-lista dd {
+    margin-left: 20px; /* Controla la sangría de la definición */
+    margin-bottom: 10px;
+}
+
+/* ========================================================
+   CORRECCIONES EN LA SECCIÓN Contacto
+   ======================================================== */
+/* 1. Contenedor principal de Contacto */
+.contacto {
+    max-width: 800px;         /* Mismo ancho del glosario para mantener simetría */
+    margin: 50px auto;        /* Centra la sección horizontalmente en la página */
+    padding: 0 20px;          /* Espacio de seguridad a los lados */
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 2. Estilo para el título de la sección */
+.contacto h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #000000;           /* O el color principal de tus títulos */
+}
+
+/* 3. Quitamos los estilos de cursiva por defecto que trae <address> */
+.contacto address {
+    font-style: normal;       
+    margin-bottom: 20px;
+}
+
+/* 4. Espaciado entre las líneas de contacto */
+.contacto p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #333333;
+}
+
+/* 5. Estilo para los enlaces (Dirección, Teléfono, Correo, Web) */
+.contacto a {
+    color: #0EAEF3;           /* Tu color azul celeste característico */
+    text-decoration: none;    /* Quita la línea subrayada de los enlaces */
+    font-weight: 500;
+    transition: color 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+/* Enfoque visual cuando el usuario pasa el mouse por encima del enlace */
+.contacto a:hover {
+    color: #0a84b8;           /* Un azul un poco más oscuro al pasar el cursor */
+    text-decoration: underline; /* Opcional: aparece el subrayado solo al posicionarse encima */
+}
