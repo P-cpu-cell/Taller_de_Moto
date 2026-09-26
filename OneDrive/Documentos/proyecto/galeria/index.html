@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuerdo para ti - Galería Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos existentes se mantienen igual */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .logo i {
+            font-size: 3rem;
+            margin-right: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(to right, #4ECDC4, #44A08D);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-logo h2 {
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #FFEAA7;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #FFEAA7;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Gallery Styles */
+        .gallery-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2D3436;
+            display: inline-block;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #FF6B6B, #4ECDC4);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #4ECDC4;
+            padding: 12px 25px;
+            margin: 5px 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+            color: #2D3436;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(to right, #FF6B6B, #FF8E53);
+            color: white;
+            border-color: #FF6B6B;
+            box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            cursor: pointer;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(45, 52, 54, 0.9), transparent);
+            color: white;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover .item-overlay {
+            transform: translateY(0);
+        }
+
+        .item-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .item-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #FF6B6B;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(45, 52, 54, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #FF6B6B;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 25px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2D3436 0%, #1a1e1f 100%);
+            color: #eee;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 12px;
+            color: #4ECDC4;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #FF6B6B;
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-column p {
+            margin-bottom: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #3a3f41;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: #FF6B6B;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid #444;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gallery-item {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                margin: 0 10px;
+            }
+
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 80%;
+                margin: 5px 0;
+            }
+
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ========== MEJORAS ESPECÍFICAS PARA BOTONES DE SERVICIOS Y CONTACTO ========== */
+        
+        /* Botones de Servicios - MEJORADOS */
+        .services-contact-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            text-align: center;
+            border-top: 4px solid #4ECDC4;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #4ECDC4;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2D3436;
+        }
+
+        .service-card p {
+            color: #636e72;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-card .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FF6B6B;
+            margin-bottom: 1rem;
+        }
+
+        /* BOTONES DE SERVICIOS MEJORADOS */
+        .submit-btn {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, #FF6B6B, #FF8E53);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2D3436;
+        }
+
+        .process-step p {
+            color: #636e72;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            color: #4ECDC4;
+            margin-right: 1rem;
+            margin-top: 5px;
+        }
+
+        .contact-card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2D3436;
+        }
+
+        .contact-card-content p {
+            color: #636e72;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #2D3436;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2D3436;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4ECDC4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* BOTÓN DE ENVÍO DE FORMULARIO MEJORADO */
+        .form-submit-btn {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .form-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.5);
+        }
+
+        .form-submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .form-submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(78, 205, 196, 0.4);
+        }
+
+        /* BOTÓN CTA MEJORADO */
+        .cta-section {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-top: 4rem;
+            border-radius: 15px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #4ECDC4;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: #f8f9fa;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        /* ========== OPTIMIZACIÓN PARA MÓVILES ========== */
+@media (max-width: 480px) {
+    /* Ajustes de header para móviles */
+    .logo {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo i {
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    /* Navegación optimizada para touch */
+    .nav-container {
+        flex-direction: column;
+        padding: 0.5rem 0;
+    }
+    
+    .nav-links {
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin: 5px 8px;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    /* Galería en columna única */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .gallery-item img {
+        height: 220px;
+    }
+    
+    /* Botones de filtro optimizados */
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 90%;
+        margin: 4px 0;
+        padding: 10px 20px;
+    }
+    
+    /* Ajustes de texto para móviles */
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+    
+    .item-overlay {
+        padding: 15px;
+    }
+    
+    .item-overlay h3 {
+        font-size: 1.1rem;
+    }
+    
+    .item-overlay p {
+        font-size: 0.85rem;
+    }
+    
+    /* Servicios en columna única */
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    /* Formulario de contacto optimizado */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    /* Footer optimizado */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+    }
+    
+    .footer-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* Ajustes de padding general */
+    .gallery-section, 
+    .services-contact-section {
+        padding: 3rem 0;
+    }
+    
+    /* Lightbox optimizado para touch */
+    .lightbox-nav button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .lightbox-close {
+        top: -40px;
+        font-size: 2rem;
+    }
+    
+    /* Mejora de botones para dedos */
+    .submit-btn,
+    .form-submit-btn,
+    .cta-btn {
+        padding: 16px 25px;
+        min-height: 50px;
+        font-size: 1rem;
+    }
+    
+    /* Ajustes de proceso */
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .process-step {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Tabletas pequeñas */
+@media (max-width: 768px) and (min-width: 481px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nav-container {
+        flex-direction: column;
+    }
+}
+
+/* Mejoras de usabilidad táctil general */
+@media (hover: none) {
+    .gallery-item:hover {
+        transform: none;
+    }
+    
+    .gallery-item:hover img {
+        transform: none;
+    }
+    
+    .service-card:hover {
+        transform: none;
+    }
+    
+    /* Mantener efectos visuales para interacciones táctiles */
+    .gallery-item:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Prevenir zoom en inputs en iOS */
+@media (max-width: 480px) {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px; /* Previene zoom en iOS */
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-camera-retro"></i>
+                <h1>Recuerdo para ti</h1>
+            </div>
+            <p class="tagline">Capturando momentos inolvidables para toda la vida</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <h2>Recuerdo para ti</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#servicios-contacto" class="btn-servicios">Servicios y Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="galeria">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra Galería</h2>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Naturaleza">Naturaleza</button>
+                <button class="filter-btn" data-filter="Comidas">Comidas</button>
+                <button class="filter-btn" data-filter="Cultivos">Cultivos</button>
+                <button class="filter-btn" data-filter="Animales">Animales</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Gallery Items - Se mantienen todas las imágenes -->
+
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen1.jpg" alt="Tucan comiendo papaya">
+                    <div class="item-overlay">
+                        <h3>Tucan comiendo papaya en un dia soleado</h3>
+                        
+                    </div>
+                    
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen2.jpg" alt="Tucan comiendo papaya">
+                    <div class="item-overlay">
+                       
+                        
+                    </div>
+                    
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen3.jpg" alt="Tucan comiendo papaya">
+                    <div class="item-overlay">
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen4.jpg" alt="Tucan comiendo papaya">
+                    <div class="item-overlay">   
+                    </div>
+                    
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen6.jpg" alt="Flor">
+                    <div class="item-overlay">
+                                              
+                    </div>  
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen9.jpg" alt="Cordoba">
+                    <div class="item-overlay">
+                                              
+                    </div>  
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen10.jpg" alt="Cordoba">
+                    <div class="item-overlay">
+                                              
+                    </div>  
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen11.jpg" alt="Cordoba">
+                    <div class="item-overlay">
+                         <h3>Cordoba</h3>                     
+                    </div>  
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen11.jpg" alt="Cordoba">
+                    <div class="item-overlay">
+                         <h3>Cordoba</h3>                     
+                    </div>  
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen12.jpg" alt="Monteagudo-Bolivia">
+                    <div class="item-overlay">
+                         <h3>Monteagudo, Bolivia</h3>                     
+                    </div>  
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen13.jpg" alt="Monteagudo-Bolivia">
+                    <div class="item-overlay">
+                                           
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen14.jpg" alt="Monteagudo-Bolivia">
+                    <div class="item-overlay">
+                                           
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen15.jpg" alt="Monteagudo-Bolivia">
+                    <div class="item-overlay">
+                         <h3>Monteagudo, Bolivia</h3>                     
+                    </div>  
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen17.jpg" alt="Monteagudo-Bolivia">
+                    <div class="item-overlay">
+                         <h3>Monteagudo, Bolivia</h3>                     
+                    </div>  
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen21.jpg" alt="Flor">
+                    <div class="item-overlay">
+                         <h3>Flor</h3>                     
+                    </div>  
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen22.jpg" alt="Flor">
+                    <div class="item-overlay">
+                                             
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen33.jpg" alt="Flor">
+                    <div class="item-overlay">
+                                             
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen28.jpg" alt="Flor">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen36.jpg" alt="flor">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                   <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen74.jpg" alt="cielo">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen79.jpg" alt="paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen79.jpg" alt="Paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                    </div>
+                   <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen80.jpg" alt="Paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen82.jpg" alt="Paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen83.jpg" alt="Paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen85.jpg" alt="Paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+              
+                 <div class="gallery-item" data-category="Naturaleza">
+                    <div class="category-badge">Naturaleza</div>
+                    <img src="imagen90.jpg" alt="Paisaje">
+                    <div class="item-overlay">
+                                            
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen7.jpg" alt="Asado">
+                    <div class="item-overlay">
+                        <h3>Asado</h3>
+                        <p>Momentos de alegría con la Familia</p>
+                    </div>
+                      </div>
+                   <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen8.jpg" alt="Golocinas cordobesas">
+                    <div class="item-overlay">
+                        <h3>Golocinas cordobesas</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                  </div>
+                  <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen24.jpg" alt="Humitas">
+                    <div class="item-overlay">
+                        <h3>Humitas</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen25.jpg" alt="humitas">
+                    <div class="item-overlay">
+                        <h3>Humitas</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen39.jpg" alt="Asado">
+                    <div class="item-overlay">
+                        <h3>Asado</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen40.jpg" alt="Torta Helada">
+                    <div class="item-overlay">
+                        <h3>Torta Helada</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen54.jpg" alt="Miel de caña">
+                    <div class="item-overlay">
+                        <h3>Miel de caña</h3>
+                        <p>Una delicia para tu paladar</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen56.jpg" alt="LICUADO DE DURAZNO">
+                    <div class="item-overlay">
+                        <h3>LICUADO DE DURAZNO</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen57.jpg" alt="CHOCLO">
+                    <div class="item-overlay">
+                        <h3>CHOCLO</h3>
+                        <p>Choclo a la parilla</p>
+                    </div>
+                   </div>
+                   <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen75.jpg" alt="Torta ">
+                    <div class="item-overlay">
+                        <h3>Torta de vainilla y frutilla</h3>
+                       
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen77.jpg" alt="asado">
+                    <div class="item-overlay">
+                        
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen91.jpg" alt="Golocinas">
+                    <div class="item-overlay">
+                        <h3>Miel de caña</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Comidas">
+                    <div class="category-badge">Comidas</div>
+                    <img src="imagen94.jpg" alt="GUISADO">
+                    <div class="item-overlay">
+                        <h3>GUISADO</h3>
+                        <p>Delicias para compartir en familia</p>
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen26.jpg" alt="Mangos">
+                    <div class="item-overlay">
+                        <h3>Mangos</h3>
+                      
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen27.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen32.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen35.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen38.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen47.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                      
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen49.jpg" alt="Coreanito">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen50.jpg" alt="Calabaza">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen53.jpg" alt="Limones">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen55.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen58.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen60.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen66.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Sembrado de maiz</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen72.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Plagas de caracoles</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen89.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Caña de azucar</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen95.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Huerta</h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Cultivos">
+                    <div class="category-badge">Cultivos</div>
+                    <img src="imagen102.jpg" alt="Huerta">
+                    <div class="item-overlay">
+                        <h3>Mandarinas </h3>
+                        <p>Producto de huerta familiar</p>
+                    </div>
+                </div>
+                  <div class="gallery-item" data-category="Animales">
+                    <div class="category-badge">Animales</div>
+                    <img src="imagen18.jpg" alt="GANADO">
+                    <div class="item-overlay">
+                        <h3>GANADO</h3>
+                        <p>Animales de la granja</p>
+                    </div>
+                </div>
+                 <div class="gallery-item" data-category="Animales">
+                    <div class="category-badge">Animales</div>
+                    <img src="imagen29.jpg" alt="GALLINAS">
+                    <div class="item-overlay">
+                        <h3>GALLINAS</h3>
+                        <p>Animales de la granja</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Animales">
+                    <div class="category-badge">Animales</div>
+                    <img src="imagen45.jpg" alt="GALLINAS">
+                    <div class="item-overlay">
+                        <h3>GALLINAS</h3>
+                        <p>Animales de la granja</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Animales">
+                    <div class="category-badge">Animales</div>
+                    <img src="imagen51.jpg" alt="Patitos">
+                    <div class="item-overlay">
+                        <h3>Patitos</h3>
+                        <p>Animales de la granja</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Contact Section -->
+    <section class="services-contact-section" id="servicios-contacto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Servicios y Contacto</h2>
+            </div>
+
+            <!-- Services Section -->
+            <div class="services-container">
+                <div class="service-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>Sesión Fotográfica Básica</h3>
+                    <p>Ideal para retratos individuales, de pareja o familiares. Incluye 30 fotos editadas profesionalmente.</p>
+                    <div class="price">$150</div>
+                    <button class="submit-btn">Solicitar Información</button>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-ring"></i>
+                    <h3>Fotografía de Eventos</h3>
+                    <p>Cobertura completa de bodas, cumpleaños y eventos especiales. Incluye álbum físico y digital.</p>
+                    <div class="price">$400</div>
+                    <button class="submit-btn">Solicitar Información</button>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Videografía Profesional</h3>
+                    <p>Video de alta calidad con edición profesional. Perfecto para capturar momentos especiales en movimiento.</p>
+                    <div class="price">$300</div>
+                    <button class="submit-btn">Solicitar Información</button>
+                </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <div class="section-title">
+                <h3>¿Cómo Funciona Nuestro Servicio?</h3>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Consulta Inicial</h3>
+                    <p>Contáctanos para discutir tus necesidades y preferencias. Te asesoraremos sobre el mejor servicio para ti.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Planificación</h3>
+                    <p>Juntos definiremos la ubicación, estilo, duración y todos los detalles de tu sesión fotográfica.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Sesión Fotográfica</h3>
+                    <p>Realizamos la sesión en el lugar acordado, creando un ambiente relajado y divertido para capturar momentos auténticos.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Entrega Final</h3>
+                    <p>Recibirás tus fotos editadas profesionalmente en el formato acordado, listas para compartir y atesorar.</p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="section-title">
+                <h3>Contáctanos</h3>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="contact-card-content">
+                            <h3>Teléfono</h3>
+                            <p>+34 123 456 789</p>
+                            <p>Lun-Vie: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-card-content">
+                            <h3>Email</h3>
+                            <p>info@recuerdoparati.com</p>
+                            <p>Respuesta en 24 horas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-card-content">
+                            <h3>Dirección</h3>
+                            <p>Calle Principal 123, Ciudad</p>
+                            <p>También ofrecemos servicios a domicilio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-card-content">
+                            <h3>Horario de Atención</h3>
+                            <p>Lunes a Viernes: 9:00 - 18:00</p>
+                            <p>Sábados: 10:00 - 14:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Servicio de Interés</label>
+                            <select id="service" name="service">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="basica">Sesión Fotográfica Básica</option>
+                                <option value="eventos">Fotografía de Eventos</option>
+                                <option value="video">Videografía Profesional</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2>¿Listo para Capturar Tus Momentos Especiales?</h2>
+                <p>Contáctanos hoy mismo para reservar tu sesión o resolver cualquier duda. Estamos aquí para ayudarte a crear recuerdos que durarán toda la vida.</p>
+                <button class="cta-btn">Solicitar Presupuesto Sin Compromiso</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img src="" alt="Imagen ampliada">
+            <div class="lightbox-nav">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Recuerdo para ti</h3>
+                    <p>Capturamos los momentos más especiales de tu vida con arte y profesionalismo. Cada imagen cuenta una historia única.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <p>Fotografía de bodas</p>
+                    <p>Sesiones familiares</p>
+                    <p>Retratos profesionales</p>
+                    <p>Fotografía de eventos</p>
+                    <p>Fotografía de producto</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</p>
+                    <p><i class="fas fa-phone"></i> +54 3873 644649</p>
+                    <p><i class="fas fa-envelope"></i> info@recuerdoparati.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Recuerdo para ti. Maria Daniela Perez.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrado de galería
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxClose = lightbox.querySelector('.lightbox-close');
+            const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+            const lightboxNext = lightbox.querySelector('.lightbox-next');
+            let currentImageIndex = 0;
+            const images = Array.from(galleryItems).map(item => item.querySelector('img').src);
+            
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    currentImageIndex = index;
+                    lightboxImg.src = images[currentImageIndex];
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            lightboxPrev.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                lightboxImg.src = images[currentImageIndex];
+            });
+            
+            lightboxNext.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                lightboxImg.src = images[currentImageIndex];
+            });
+            
+            // Navegación con teclado
+            document.addEventListener('keydown', function(e) {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        lightbox.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    } else if (e.key === 'ArrowLeft') {
+                        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                        lightboxImg.src = images[currentImageIndex];
+                    } else if (e.key === 'ArrowRight') {
+                        currentImageIndex = (currentImageIndex + 1) % images.length;
+                        lightboxImg.src = images[currentImageIndex];
+                    }
+                }
+            });
+            
+            // Funcionalidad para botones de servicios y contacto
+            document.querySelectorAll('.submit-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceName = this.closest('.service-card').querySelector('h3').textContent;
+                    alert(`Has solicitado información sobre: ${serviceName}. Serás redirigido al formulario de contacto.`);
+                    
+                    // Scroll to contact form
+                    document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // CTA button
+            document.querySelector('.cta-btn').addEventListener('click', function() {
+                alert('¡Gracias por tu interés! Serás redirigido al formulario de contacto para solicitar tu presupuesto personalizado.');
+                document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Form submission handling
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const service = document.getElementById('service').value;
+                
+                // In a real application, you would send this data to a server
+                // For this example, we'll just show an alert
+                alert(`¡Gracias ${name}! Hemos recibido tu mensaje sobre ${getServiceName(service)}. Te contactaremos pronto en ${email}.`);
+                
+                // Reset form
+                this.reset();
+            });
+            
+            // Helper function to get service name
+            function getServiceName(value) {
+                const services = {
+                    'basica': 'Sesión Fotográfica Básica',
+                    'eventos': 'Fotografía de Eventos',
+                    'video': 'Videografía Profesional',
+                    'otro': 'otro servicio'
+                };
+                
+                return services[value] || 'nuestros servicios';
+            }
+        });
+    </script>
+</body>
+</html>
