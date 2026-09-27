@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|c:\\users\\usuario\\onedrive\\documentos\\nueva carpeta (2)\\taller de moto\\profecional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|solutionrelative:profecional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\servicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|solutionrelative:servicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|solutionrelative:turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|solutionrelative:menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\especialidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDEDD277-B872-412F-9C33-BE0CB0D668A7}|salon de belleza.csproj|solutionrelative:especialidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PROFECIONAL.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\PROFECIONAL.cs",
+              "RelativeDocumentMoniker": "PROFECIONAL.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\PROFECIONAL.cs [Dise\u00F1o]",
+              "RelativeToolTip": "PROFECIONAL.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T16:23:43.534Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SERVICIO.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\SERVICIO.cs",
+              "RelativeDocumentMoniker": "SERVICIO.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\SERVICIO.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SERVICIO.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T16:19:39.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TURNO.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\TURNO.cs",
+              "RelativeDocumentMoniker": "TURNO.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\TURNO.cs [Dise\u00F1o]",
+              "RelativeToolTip": "TURNO.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T16:17:54.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MENU.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\MENU.cs",
+              "RelativeDocumentMoniker": "MENU.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\MENU.cs [Dise\u00F1o]",
+              "RelativeToolTip": "MENU.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T14:26:04.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ESPECIALIDAD.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\ESPECIALIDAD.cs",
+              "RelativeDocumentMoniker": "ESPECIALIDAD.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Documentos\\Nueva carpeta (2)\\taller de moto\\ESPECIALIDAD.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ESPECIALIDAD.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T14:25:54.715Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
